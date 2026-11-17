@@ -1,0 +1,6 @@
+{
+  "name": "Barbearia Trindade – Gestão Inteligente",
+  "description": "Sistema profissional de gestão financeira, atendimentos, fechamento de caixa e relatórios para a Barbearia Trindade.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

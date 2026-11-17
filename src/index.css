@@ -1,0 +1,484 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  html, body {
+    overscroll-behavior-y: contain;
+    touch-action: manipulation;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #060608;
+    color: #F4F4F5;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono, .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* =========================================================
+   Apple iOS Liquid Glass Design System & Motion Physics
+   ========================================================= */
+
+.apple-ambient-bg {
+  position: relative;
+  background-color: #060608;
+  background-image:
+    radial-gradient(60% 45% at 12% 4%, rgba(212, 175, 55, 0.11) 0%, rgba(212, 175, 55, 0) 70%),
+    radial-gradient(50% 45% at 88% 12%, rgba(148, 163, 184, 0.07) 0%, rgba(148, 163, 184, 0) 68%),
+    radial-gradient(55% 45% at 75% 92%, rgba(212, 175, 55, 0.07) 0%, rgba(212, 175, 55, 0) 72%);
+  background-attachment: fixed;
+}
+
+/* Living drifting backdrop spheres visible behind frosted glass */
+.apple-ambient-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.apple-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(88px);
+  will-change: transform;
+  opacity: 0.42;
+}
+
+.apple-orb-gold {
+  width: 44vw;
+  height: 44vw;
+  max-width: 520px;
+  max-height: 520px;
+  min-width: 240px;
+  min-height: 240px;
+  top: -10%;
+  left: -6%;
+  background: radial-gradient(circle, rgba(230, 198, 92, 0.2) 0%, rgba(212, 175, 55, 0.06) 48%, transparent 74%);
+  animation: orbDriftA 22s ease-in-out infinite alternate;
+}
+
+.apple-orb-slate {
+  width: 42vw;
+  height: 42vw;
+  max-width: 480px;
+  max-height: 480px;
+  min-width: 220px;
+  min-height: 220px;
+  top: 24%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, rgba(100, 116, 139, 0.05) 50%, transparent 74%);
+  animation: orbDriftB 26s ease-in-out infinite alternate;
+}
+
+.apple-orb-amber {
+  width: 38vw;
+  height: 38vw;
+  max-width: 440px;
+  max-height: 440px;
+  min-width: 200px;
+  min-height: 200px;
+  bottom: -12%;
+  left: 28%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(245, 158, 11, 0.05) 52%, transparent 75%);
+  animation: orbDriftC 24s ease-in-out infinite alternate;
+}
+
+/* Primary smoked obsidian glass surface — dark enough to highlight first-line typography */
+.apple-glass {
+  position: relative;
+  background: linear-gradient(155deg, rgba(21, 21, 27, 0.80) 0%, rgba(13, 13, 18, 0.76) 100%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 16px 38px -14px rgba(0, 0, 0, 0.68);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 200ms ease,
+    border-color 200ms ease,
+    box-shadow 220ms ease;
+}
+
+.apple-glass:hover {
+  background: linear-gradient(155deg, rgba(28, 28, 36, 0.74) 0%, rgba(17, 17, 24, 0.70) 100%);
+  border-color: rgba(255, 255, 255, 0.19);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 20px 44px -14px rgba(0, 0, 0, 0.74);
+}
+
+.apple-glass-interactive {
+  cursor: pointer;
+}
+
+.apple-glass-interactive:hover {
+  transform: translateY(-2px);
+  border-color: rgba(230, 198, 92, 0.28);
+}
+
+.apple-glass-interactive:active {
+  transform: scale(0.985);
+}
+
+/* Elevated Liquid Gold + Obsidian Hero Surface */
+.apple-glass-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(36, 31, 22, 0.80) 0%, rgba(17, 17, 23, 0.86) 55%, rgba(13, 13, 18, 0.88) 100%);
+  backdrop-filter: blur(34px) saturate(190%);
+  -webkit-backdrop-filter: blur(34px) saturate(190%);
+  border: 1px solid rgba(230, 198, 92, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 24px 58px -16px rgba(0, 0, 0, 0.76);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 240ms ease;
+}
+
+.apple-glass-hero:hover {
+  background: linear-gradient(145deg, rgba(44, 37, 25, 0.74) 0%, rgba(20, 20, 27, 0.80) 55%, rgba(15, 15, 21, 0.82) 100%);
+  border-color: rgba(230, 198, 92, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 26px 64px -16px rgba(212, 175, 55, 0.16);
+}
+
+/* Pointer/Touch Specular Glass Spotlight Overlay */
+.apple-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    280px circle at var(--mx, 50%) var(--my, 20%),
+    rgba(230, 198, 92, 0.13) 0%,
+    rgba(255, 255, 255, 0.05) 38%,
+    transparent 70%
+  );
+  transition: opacity 220ms ease;
+  z-index: 1;
+}
+
+.apple-spotlight:hover::before,
+.apple-spotlight:active::before {
+  opacity: 1;
+}
+
+/* Darker Smoked Chrome for Header, Sidebar, and Floating iPhone Dock */
+.apple-glass-chrome {
+  background: linear-gradient(180deg, rgba(12, 12, 16, 0.88) 0%, rgba(9, 9, 13, 0.85) 100%);
+  backdrop-filter: blur(34px) saturate(195%);
+  -webkit-backdrop-filter: blur(34px) saturate(195%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: background 200ms ease;
+}
+
+/* Deep Modal / Bottom Sheet / Login Card Glass (high opacity so stacked layers stay clean) */
+.apple-glass-modal {
+  position: relative;
+  background: linear-gradient(160deg, rgba(18, 18, 24, 0.94) 0%, rgba(11, 11, 16, 0.96) 100%);
+  backdrop-filter: blur(42px) saturate(195%);
+  -webkit-backdrop-filter: blur(42px) saturate(195%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 30px 80px -16px rgba(0, 0, 0, 0.88);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.apple-glass-modal:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Dark Glass Well for Segmented Controls (gives crisp contrast to active tabs and first line) */
+.apple-glass-well {
+  background: rgba(10, 10, 14, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.apple-glass-well:hover {
+  background: rgba(18, 18, 24, 0.74);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Floating iPhone Liquid Glass Tab Dock Pill (darker smoked gold-rim capsule) */
+.apple-dock-pill {
+  background: linear-gradient(
+    180deg,
+    rgba(230, 198, 92, 0.20) 0%,
+    rgba(24, 24, 32, 0.90) 100%
+  );
+  border: 1px solid rgba(230, 198, 92, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 6px 18px rgba(0, 0, 0, 0.52);
+}
+
+/* Primary Brushed Gold Action Button with Specular Sweep */
+.apple-btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #E8CA64 0%, #D4AF37 100%);
+  color: #09090B;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.44),
+    0 8px 22px -6px rgba(212, 175, 55, 0.38);
+  transition:
+    transform 190ms cubic-bezier(0.34, 1.45, 0.64, 1),
+    filter 180ms ease,
+    box-shadow 200ms ease;
+}
+
+.apple-btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.38) 50%, transparent 75%);
+  transform: translateX(-120%);
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.apple-btn-gold:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.54),
+    0 12px 26px -6px rgba(212, 175, 55, 0.52);
+}
+
+.apple-btn-gold:hover::after {
+  transform: translateX(120%);
+}
+
+.apple-btn-gold:active {
+  transform: scale(0.96);
+}
+
+/* Spring Tab & Interactive Control Physics */
+.apple-tab-spring {
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.45, 0.64, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 160ms ease,
+    box-shadow 180ms ease;
+}
+
+.apple-tab-spring:hover {
+  transform: translateY(-1px);
+}
+
+.apple-tab-spring:active {
+  transform: scale(0.93);
+}
+
+.apple-icon-pop {
+  animation: appleTabIconPop 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Avoid opacity: 0 on backdrop-filter parent containers to prevent weird transparency flicker */
+.apple-view-enter {
+  animation: appleViewEnter 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.apple-backdrop-in {
+  animation: appleBackdropIn 180ms ease-out both;
+}
+
+.apple-sheet-up {
+  animation: appleSheetUp 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.apple-stagger-1 {
+  animation: appleViewEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) 15ms both;
+}
+.apple-stagger-2 {
+  animation: appleViewEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+}
+.apple-stagger-3 {
+  animation: appleViewEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) 65ms both;
+}
+.apple-stagger-4 {
+  animation: appleViewEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+}
+
+@keyframes orbDriftA {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(5vw, 4vh, 0) scale(1.08); }
+}
+
+@keyframes orbDriftB {
+  0% { transform: translate3d(0, 0, 0) scale(1.02); }
+  100% { transform: translate3d(-6vw, 5vh, 0) scale(0.95); }
+}
+
+@keyframes orbDriftC {
+  0% { transform: translate3d(0, 0, 0) scale(0.98); }
+  100% { transform: translate3d(4vw, -5vh, 0) scale(1.06); }
+}
+
+@keyframes appleTabIconPop {
+  0% { transform: scale(0.86) translateY(2px); }
+  55% { transform: scale(1.16) translateY(-1px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes appleViewEnter {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 8px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes appleBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes appleSheetUp {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 22px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Deeper black obsidian framing & higher opacity for mobile / Android viewports */
+@media (max-width: 1023px) {
+  html,
+  body,
+  .apple-ambient-bg {
+    background-color: #000000;
+  }
+
+  .apple-orb {
+    opacity: 0.22;
+  }
+
+  .apple-orb-gold {
+    top: 4%;
+  }
+
+  .apple-glass,
+  .apple-glass:hover,
+  .apple-glass-interactive:active {
+    background: linear-gradient(155deg, rgba(14, 14, 18, 0.94) 0%, rgba(7, 7, 10, 0.96) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .apple-glass-hero,
+  .apple-glass-hero:hover {
+    background: linear-gradient(145deg, rgba(24, 20, 14, 0.95) 0%, rgba(9, 9, 12, 0.97) 100%);
+    border-color: rgba(230, 198, 92, 0.30);
+  }
+
+  .apple-glass-chrome,
+  .apple-glass-chrome:hover {
+    background: rgba(4, 4, 6, 0.96);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .apple-glass-modal,
+  .apple-glass-modal:hover {
+    background: linear-gradient(160deg, rgba(12, 12, 16, 0.98) 0%, rgba(4, 4, 6, 0.99) 100%);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .apple-glass-well,
+  .apple-glass-well:hover {
+    background: rgba(5, 5, 8, 0.90);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .apple-dock-pill {
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.22) 0%, rgba(10, 10, 14, 0.96) 100%);
+    border-color: rgba(230, 198, 92, 0.42);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-orb,
+  .apple-icon-pop,
+  .apple-view-enter,
+  .apple-backdrop-in,
+  .apple-sheet-up,
+  .apple-stagger-1,
+  .apple-stagger-2,
+  .apple-stagger-3,
+  .apple-stagger-4 {
+    animation: none !important;
+  }
+  .apple-glass,
+  .apple-glass-hero,
+  .apple-tab-spring,
+  .apple-btn-gold,
+  .apple-dock-pill {
+    transition: none !important;
+  }
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.35rem);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Custom sleek dark scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
